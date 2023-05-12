@@ -29,7 +29,7 @@ public class Main {
         // this is so we can update our word count and next word maps
         for (File file : files) {
             BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
+            String line = "";
 
             while ((line = br.readLine()) != null) {
                 String[] words = line.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
@@ -61,13 +61,13 @@ public class Main {
 
             for (String next : currentWordMap.keySet()) {
                 int frequency = currentWordMap.get(next);
-                double probability = (double) frequency / totalCount;
+                double probability = (double)frequency / totalCount;
 
                 // then we will print each word
                 // followed by a new line with some spacing to follow sample output given in
                 // assessment paper
                 System.out.println(word);
-                System.out.println("    " + next + " " + String.format("%.2f", probability));
+                System.out.println("     " + next + " " + String.format("%.2f", probability));
             }
         }
 
@@ -77,6 +77,9 @@ public class Main {
     // needed for calling the same method within a method to access subdirectories
     // (recursive)
     public static void addFiles(File directory, List<File> files) {
+        // hint given by assessment paper
+        // will return all File objects found in a given directory
+        // according to javadoc
         File[] fileList = directory.listFiles();
 
         if (fileList != null) {
